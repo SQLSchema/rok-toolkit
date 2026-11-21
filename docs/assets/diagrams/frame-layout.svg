@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 20 880 292" width="880" height="292" role="img" aria-labelledby="t d">
+<!-- source: docs/headless/02-wire-protocol.md, "Frame layout" -->
+<!-- source: "Cleartext length header plus body. Only the seed body is cleartext." -->
+<!-- source: table row "Two-byte big-endian value less than 0xFFFF | That value | Byte 2" -->
+<!-- source: table row "FF FF followed by a four-byte big-endian value | The four-byte value | Byte 6" -->
+<!-- source: "Length excludes the header. Extended form: body ≥65,535 bytes. Reject declared bodies >64 MiB." -->
+<!-- source: "The measured header ff ff 00 01 35 bd declares a 79,293-byte body." -->
+<title id="t">Frame layout</title>
+<desc id="d">Two header forms on a byte ruler. Short form: a two-byte big-endian length less than 0xFFFF in bytes 0 and 1, body from byte 2. Extended form, for bodies of 65,535 bytes or more: FF FF in bytes 0 and 1, a four-byte big-endian length in bytes 2 to 5, body from byte 6. The extended row shows the measured header ff ff 00 01 35 bd, which declares a 79,293-byte body. The header is cleartext, the length excludes the header, and declared bodies over 64 MiB are rejected.</desc>
+<rect x="0.5" y="20.5" width="879" height="291" fill="#000000" stroke="#7a7a7a" stroke-width="1"/>
+<g font-family="ui-monospace, SFMono-Regular, Consolas, Menlo, monospace">
+  <text x="24" y="60" font-size="13" fill="#7a7a7a">byte</text>
+  <g font-size="13" fill="#7a7a7a" text-anchor="middle">
+    <text x="232" y="60">0</text><text x="296" y="60">1</text><text x="360" y="60">2</text><text x="424" y="60">3</text>
+    <text x="488" y="60">4</text><text x="552" y="60">5</text><text x="616" y="60">6</text>
+  </g>
+  <line x1="200" y1="66" x2="856" y2="66" stroke="#3a3a3a" stroke-width="1"/>
+
+  <text x="24" y="96" font-size="14" fill="#e8e8e8">short form</text>
+  <text x="24" y="114" font-size="13" fill="#7a7a7a">length &lt; 0xFFFF</text>
+  <rect x="200" y="76" width="128" height="48" fill="#1a1a1a" stroke="#7a7a7a" stroke-width="1"/>
+  <line x1="264" y1="76" x2="264" y2="84" stroke="#7a7a7a" stroke-width="1"/>
+  <line x1="264" y1="116" x2="264" y2="124" stroke="#7a7a7a" stroke-width="1"/>
+  <text x="264" y="105" font-size="15" fill="#e8e8e8" text-anchor="middle">length</text>
+  <path d="M856 76 H328 V124 H856" fill="#000000" stroke="#7a7a7a" stroke-width="1"/>
+  <line x1="856" y1="76" x2="856" y2="124" stroke="#7a7a7a" stroke-width="1" stroke-dasharray="3 4"/>
+  <text x="592" y="96" font-size="14" fill="#e8e8e8" text-anchor="middle">body · from byte 2</text>
+  <text x="592" y="114" font-size="13" fill="#7a7a7a" text-anchor="middle">that many bytes</text>
+  <text x="264" y="146" font-size="13" fill="#7a7a7a" text-anchor="middle">2 bytes · big-endian</text>
+
+  <text x="24" y="196" font-size="14" fill="#e8e8e8">extended form</text>
+  <text x="24" y="213" font-size="13" fill="#7a7a7a">body ≥ 65,535 bytes</text>
+  <text x="24" y="230" font-size="13" fill="#7a7a7a">measured header shown</text>
+  <g fill="#1a1a1a" stroke="#7a7a7a" stroke-width="1">
+    <rect x="200" y="180" width="64" height="48"/><rect x="264" y="180" width="64" height="48"/>
+    <rect x="328" y="180" width="64" height="48"/><rect x="392" y="180" width="64" height="48"/>
+    <rect x="456" y="180" width="64" height="48"/><rect x="520" y="180" width="64" height="48"/>
+  </g>
+  <g font-size="16" fill="#e8e8e8" text-anchor="middle">
+    <text x="232" y="210">FF</text><text x="296" y="210">FF</text><text x="360" y="210">00</text>
+    <text x="424" y="210">01</text><text x="488" y="210">35</text><text x="552" y="210">BD</text>
+  </g>
+  <path d="M856 180 H584 V228 H856" fill="#000000" stroke="#7a7a7a" stroke-width="1"/>
+  <line x1="856" y1="180" x2="856" y2="228" stroke="#7a7a7a" stroke-width="1" stroke-dasharray="3 4"/>
+  <text x="720" y="200" font-size="14" fill="#e8e8e8" text-anchor="middle">body · from byte 6</text>
+  <text x="720" y="218" font-size="13" fill="#7a7a7a" text-anchor="middle">79,293 bytes declared</text>
+  <g stroke="#7a7a7a" stroke-width="1" fill="none">
+    <path d="M204 236 V242 H324 V236"/>
+    <path d="M332 236 V242 H580 V236"/>
+  </g>
+  <text x="264" y="260" font-size="13" fill="#7a7a7a" text-anchor="middle">FF FF</text>
+  <text x="456" y="260" font-size="13" fill="#7a7a7a" text-anchor="middle">length · 4 bytes · big-endian</text>
+
+  <line x1="24" y1="278" x2="856" y2="278" stroke="#3a3a3a" stroke-width="1"/>
+  <text x="440" y="299" font-size="13" fill="#7a7a7a" text-anchor="middle">header: cleartext  ·  length excludes the header  ·  reject declared bodies &gt; 64 MiB</text>
+</g>
+</svg>
